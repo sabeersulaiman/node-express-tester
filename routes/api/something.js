@@ -5,3 +5,11 @@ function checkForErrorMessage(e) {
         return false;
     }
 }
+
+function isOdd(number) {
+    return number % 2 === 1;
+}
+
+function isEven(number) {
+    return !isOdd(number);
+}
