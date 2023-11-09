@@ -276,4 +276,18 @@ router.delete('/:article/comments/:comment', auth.required, function(req, res, n
   }
 });
 
+// removes all comments
+router.delete('/:article/comments/', auth.required, function(req, res, next) {
+  if(req.comment.author.toString() === req.payload.id.toString()){
+    req.article.comments.removeAll();
+    req.article.save()
+      .then(Comment.find({_id: req.comment._id}).remove().exec())
+      .then(function(){
+        res.sendStatus(204);
+      });
+  } else {
+    res.sendStatus(403);
+  }
+});
+
 module.exports = router;
