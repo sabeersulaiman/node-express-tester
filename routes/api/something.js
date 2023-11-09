@@ -5,3 +5,7 @@ function checkForErrorMessage(e) {
         return false;
     }
 }
+
+function isOdd(number) {
+    return number % 2 === 1;
+}
