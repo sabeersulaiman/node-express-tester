@@ -276,4 +276,14 @@ router.delete('/:article/comments/:comment', auth.required, function(req, res, n
   }
 });
 
+router.param('commentv2', function(req, res, next, id) {
+  Comment.findById(id).then(function(comment){
+    if(!comment) { return res.sendStatus(404); }
+
+    req.comment = comment;
+
+    return next();
+  }).catch(next);
+});
+
 module.exports = router;
